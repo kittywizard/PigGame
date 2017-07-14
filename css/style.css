@@ -1,0 +1,27 @@
+
+body {
+
+    background-color: green;
+}
+
+.container {
+  display: flex;
+
+}
+
+
+/* CSS settings for mouse over or active? */
+
+.p1, .p2 {
+  background-color: #ccc;
+  padding: 20px;
+  width:25%;
+}
+
+.dice-box {
+  padding:20px;
+  background-color: pink;
+  width:50%;
+  color: black;
+  
+}
