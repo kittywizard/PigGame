@@ -14,8 +14,9 @@ GAME RULES:
 var getClick = document.getElementById('rollAgain');
 rollAgain.addEventListener('click', rollDice, false);
 
-//set roundScore to 0 to start
-var roundScore = 0;
+//set all scores to 0 to start
+var roundScore, player1, player2 = 0;
+var currentPlayer = true; /* boolean; player 1 = true and player 2 = false */
 
 //the dice rolling function
 function rollDice(){
@@ -32,6 +33,22 @@ function rollDice(){
   else {
     roundScore += result;
     console.log(roundScore);
+    //players will switch here, call a new function?
+    //switchPlayer();
     return roundScore;
+    //does this return stay if i call a function?
   }
+}
+
+function switchPlayer() {
+  //will be called by rollDice and also by a button click
+ if (currentPlayer == true){
+   currentPlayer = false;
+   return currentPlayer;
+ }
+  else {
+   currentPlayer = true;
+   return currentPlayer;
+  }
+  
 }
