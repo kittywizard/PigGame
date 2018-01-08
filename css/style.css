@@ -9,6 +9,13 @@ body {
 
 }
 
+.p1roundScore {
+  color: black;
+}
+
+.p1Score {
+  color: black;
+}
 
 /* CSS settings for mouse over or active? */
 
@@ -23,5 +30,5 @@ body {
   background-color: pink;
   width:50%;
   color: black;
-  
+
 }

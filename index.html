@@ -26,17 +26,17 @@
     </div>
     <div class="p1">
       <h3>Player 1</h3>
-      <h1 class="p1Score">Score</h1>
+      <h1 class="p1Score"></h1>
       <br />
-      <h4 class="roundScore">Round Score</h4>
+      <h4 class="p1roundScore"></h4>
     </div>
 
     <div class="dice-box">
         <h2>Current Roll</h2>
         <br />
-        <button id="rollAgain" type="button">Roll</button>
-        
-        <button id="saveScore" type="button">End Round</button>
+        <button id="rollAgain" type="button" onclick="rollDice()">Roll</button>
+
+        <button id="saveScore" type="button" onclick="endRound(roundScore)">End Round</button>
     </div>
 
     <div class="p2">

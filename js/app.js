@@ -11,27 +11,69 @@ GAME RULES:
 */
 
 //listen for a click on the submit button to start function
-var getClick = document.getElementById('rollAgain');
-rollAgain.addEventListener('click', rollDice, false);
+  //var getClick = document.getElementById('rollAgain');
+  //rollAgain.addEventListener('click', rollDice, false);
+
+//listen for the end round click
+  //var stopRolling = document.getElementById('saveScore');
+  //saveScore.addEventListener('click', endRound, false);
+
+//total scores
+var scores = [0,0];
+var activePlayer = 0;
 
 //set roundScore to 0 to start
 var roundScore = 0;
+
+//set css variables
+var $setp1Score = $(".p1Score");
+var $setp1roundScore = $(".p1roundScore");
+
+
+//this button will continue to add roundScore points !! fix pls
+//hide it?
+
+function endRound(roundScore) {
+  //need to account for which player's turn it is at some point
+  scores[activePlayer] = scores[activePlayer] + roundScore;
+  console.log(scores[activePlayer]);
+  //right now its just set up to scoes position zero, change the zero to activePlayer at some point, once player switching works
+
+  $setp1Score.html(scores[activePlayer]);
+  roundScore = 0;
+  return;
+    //switch players
+    //TODO
+}
 
 //the dice rolling function
 function rollDice(){
   //generate a random number between 1 and 6
   var result = Math.floor(Math.random() * 6) + 1;
-  console.log(result);
+  console.log("Result: " + result);
 
   //check the results
   if(result === 1) {
     roundScore = 0;
     console.log(roundScore + " oh noes");
-    return roundScore;
+    endRound(roundScore);
   }
+
   else {
     roundScore += result;
-    console.log(roundScore);
+    console.log("Round Score: " + roundScore);
+    $setp1roundScore.html(roundScore);
     return roundScore;
   }
+}
+
+function playerSwitch() {
+  //call this from endRound()
+  if (activePlayer == 0){
+    activePlayer = 1;
+  }
+  else {
+    activePlayer = 0;
+  }
+
 }
