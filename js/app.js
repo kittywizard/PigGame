@@ -31,20 +31,30 @@ var currentPlayer = true; /* boolean; player 1 = true and player 2 = false */
 var $setp1Score = $(".p1Score");
 var $setp1roundScore = $(".p1roundScore");
 
+//make a variable for the end round button
+var endRoundButton = document.getElementById("saveScore");
 
-//this button will continue to add roundScore points !! fix pls
-//hide it?
+//BUG this button will continue to add roundScore points !! fix pls
+
 
 function endRound(roundScore) {
   //need to account for which player's turn it is at some point
   //TODO switch Player
   scores[activePlayer] = scores[activePlayer] + roundScore;
   console.log(scores[activePlayer]);
-  //right now its just set up to scoes position zero, change the zero to activePlayer at some point, once player switching works
 
   $setp1Score.html(scores[activePlayer]);
   roundScore = 0;
-  return;
+
+  //hide end round button for now when its been clicked
+
+  /*if (saveScore.style.display === "block") {
+    square.style.display = "none";
+  } else {
+    square.style.display = "block"
+  }*/
+
+  return roundScore;
     //TODO fix endRound so you can't keep getting more money
 }
 
@@ -57,27 +67,27 @@ function rollDice(){
   //check the results
   if(result === 1) {
     roundScore = 0;
-    console.log(roundScore + " oh noes");
+    console.log(roundScore + " endRound will now run");
     endRound(roundScore);
   }
 
   else {
     roundScore += result;
-<<<<<<< HEAD
     console.log("Round Score: " + roundScore);
+    // WHAT DID I DO BUG BUG BUG BUG
     $setp1roundScore.html(roundScore);
-=======
-    console.log(roundScore);
+
+
     //players will switch here, call a new function?
     //switchPlayer();
->>>>>>> origin/master
+
     return roundScore;
     //does this return stay if i call a function?
   }
 }
 
-<<<<<<< HEAD
-function playerSwitch() {
+
+/*function playerSwitch() {
   //call this from endRound()
   //TODO switch
   if (activePlayer == 0){
@@ -86,18 +96,5 @@ function playerSwitch() {
   else {
     activePlayer = 0;
   }
-
-=======
-function switchPlayer() {
-  //will be called by rollDice and also by a button click
- if (currentPlayer == true){
-   currentPlayer = false;
-   return currentPlayer;
- }
-  else {
-   currentPlayer = true;
-   return currentPlayer;
-  }
-
->>>>>>> origin/master
 }
+*/

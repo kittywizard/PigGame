@@ -17,6 +17,10 @@ body {
   color: black;
 }
 
+.saveScore {
+  display: block;
+}
+
 /* CSS settings for mouse over or active? */
 
 .p1, .p2 {
@@ -32,5 +36,3 @@ body {
   color: black;
 
 }
-
-/*testing changes to github */
