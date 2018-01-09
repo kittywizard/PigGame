@@ -24,7 +24,7 @@ var scores = [0,0];
 var activePlayer = 0;
 
 //set all scores to 0 to start
-var roundScore = 0;
+var roundScore, player1, player2 = 0;
 
 //set css variables
 var $setp1Score = $(".p1Score");
@@ -41,6 +41,7 @@ function rollDice(){
   //generate a random number between 1 and 6
   var result = Math.floor(Math.random() * 6) + 1;
   console.log("Result: " + result);
+  console.log(roundScore);
 
   //check the results
   if(result === 1) {
@@ -51,6 +52,7 @@ function rollDice(){
 
   else {
     roundScore += result;
+    console.log( roundScore);
     console.log("Round Score: " + roundScore);
     // WHAT DID I DO BUG BUG BUG BUG
     $setp1roundScore.html(roundScore);
