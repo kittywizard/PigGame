@@ -23,8 +23,9 @@ GAME RULES:
 var scores = [0,0];
 var activePlayer = 0;
 
-//set roundScore to 0 to start
-var roundScore = 0;
+//set all scores to 0 to start
+var roundScore, player1, player2 = 0;
+var currentPlayer = true; /* boolean; player 1 = true and player 2 = false */
 
 //set css variables
 var $setp1Score = $(".p1Score");
@@ -62,12 +63,20 @@ function rollDice(){
 
   else {
     roundScore += result;
+<<<<<<< HEAD
     console.log("Round Score: " + roundScore);
     $setp1roundScore.html(roundScore);
+=======
+    console.log(roundScore);
+    //players will switch here, call a new function?
+    //switchPlayer();
+>>>>>>> origin/master
     return roundScore;
+    //does this return stay if i call a function?
   }
 }
 
+<<<<<<< HEAD
 function playerSwitch() {
   //call this from endRound()
   //TODO switch
@@ -78,4 +87,17 @@ function playerSwitch() {
     activePlayer = 0;
   }
 
+=======
+function switchPlayer() {
+  //will be called by rollDice and also by a button click
+ if (currentPlayer == true){
+   currentPlayer = false;
+   return currentPlayer;
+ }
+  else {
+   currentPlayer = true;
+   return currentPlayer;
+  }
+  
+>>>>>>> origin/master
 }
