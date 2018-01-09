@@ -18,8 +18,7 @@ GAME RULES:
   //var stopRolling = document.getElementById('saveScore');
   //saveScore.addEventListener('click', endRound, false);
 
-//dammit github just work ???
-//why
+
 //total scores
 var scores = [0,0];
 var activePlayer = 0;
