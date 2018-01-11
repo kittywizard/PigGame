@@ -32,7 +32,7 @@ var $setp1roundScore = $(".p1roundScore");
 
 //make a variable for the end round button
 //BUG
-//var endRoundButton = document.getElementById("saveScore");
+var endRoundButton = document.getElementById("saveScore");
 
 //BUG this button will continue to add roundScore points !! fix pls
 
@@ -52,7 +52,6 @@ function rollDice(){
   else {
     roundScore += result;
     console.log("Round Score: " + roundScore);
-    // WHAT DID I DO BUG BUG BUG BUG
     $setp1roundScore.html(roundScore);
 
 
