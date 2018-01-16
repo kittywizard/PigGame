@@ -31,7 +31,6 @@ var $setp1Score = $(".p1Score");
 var $setp1roundScore = $(".p1roundScore");
 
 //make a variable for the end round button
-//BUG
 var endRoundButton = document.getElementById("saveScore");
 
 //BUG this button will continue to add roundScore points !! fix pls
@@ -72,26 +71,21 @@ function endRound(roundScore) {
   $setp1Score.html(scores[activePlayer]);
   roundScore = 0;
 
-  //hide end round button for now when its been clicked
-
-  /*if (saveScore.style.display === "block") {
-    square.style.display = "none";
-  } else {
-    square.style.display = "block"
-  }*/
-
-  return roundScore;
+  playerSwitch();
     //TODO fix endRound so you can't keep getting more money
 }
 
-/*function playerSwitch() {
-  //call this from endRound()
-  //TODO switch
+function playerSwitch() {
   if (activePlayer == 0){
     activePlayer = 1;
   }
   else {
     activePlayer = 0;
   }
+  console.log("Player is now: " + activePlayer);
+  console.log("Player 1's score is: " + scores[0] + " and Player 2's score is: " + scores[1]);
+
+  //need to do the css editing maybe?
+
+  return activePlayer;
 }
-*/
