@@ -10,20 +10,25 @@ GAME RULES:
 
 */
 
+//TODO do i need these anymore?
 //listen for a click on the submit button to start function
 //var getClick = document.getElementById('rollAgain');
 //rollAgain.addEventListener('click', rollDice, false);
 
+//TODO do i need these either?
 //listen for the end round click
 //var stopRolling = document.getElementById('saveScore');
 //saveScore.addEventListener('click', endRound, false);
 
 
-//total scores
+//total scores array
 var scores = [0, 0];
+
+//activePlayer keeps track of Player 1 [0] and Player 2 [1]
+//Player 1 goes first. ALWAYS
 var activePlayer = 0;
 
-//set all scores to 0 to start
+//set roundScore to zero
 var roundScore = 0;
 
 //set css variables
@@ -32,6 +37,7 @@ var $setp1roundScore = $(".p1roundScore");
 
 var $setp2Score = $(".p2Score");
 var $setp2roundScore = $(".p2roundScore");
+
 //make a variable for the end round button
 var endRoundButton = document.getElementById("saveScore");
 
@@ -40,39 +46,48 @@ var endRoundButton = document.getElementById("saveScore");
 //the dice rolling function
 function rollDice() {
   //generate a random number between 1 and 6
+  console.log("roundScore is currently: " + roundScore);
   var result = Math.floor(Math.random() * 6) + 1;
   console.log("Result: " + result);
 
   //check the results
   if (result === 1) {
     roundScore = 0;
-    console.log(roundScore + " endRound will now run");
-    endRound(roundScore);
+    result = 0;
+    //log
+    console.log("Result was: " + result + ",  round over.");
+    //call endRound
+    endRound(result);
   } else {
+    //add result to roundScore
     roundScore += result;
-    console.log("Round Score: " + roundScore);
+    console.log("Round Score: " + roundScore + " Current Player: " + activePlayer);
 
-    //check which player is active
+    //check which player is active and update their score
     if (activePlayer == 0) {
       $setp1roundScore.html(roundScore);
     } else if (activePlayer == 1) {
       $setp2roundScore.html(roundScore);
     }
-    
-    //not needed?
-    //return roundScore;
+    return;
   }
 }
 
 function endRound(roundScore) {
-  //check for when  a score hits 100
-  if(scores[activePlayer] <= 100) {
-
+  //check for when a score hits 100
+  //BUG this isn't triggering
+  if(scores[activePlayer] >= 100) {
+    console.log("Congrats to Player " + activePlayer + " for winning the game with a total of " + scores[activePlayer]);
   }
-  //need to account for which player's turn it is at some point
-  //TODO switch Player
-  scores[activePlayer] = scores[activePlayer] + roundScore;
-  console.log(scores[activePlayer]);
+
+    //after someone wins... need to do something to end the GAME TODO
+
+  //add roundScore to the activePlayer's score. in theory it should just add zero if there was a 1 rolled..
+  scores[activePlayer] += roundScore;
+  roundScore = 0;
+  console.log("roundScore has been reset: " + roundScore);
+  //BUG this isn't being picked up
+
   if (activePlayer == 0) {
 
     $setp1Score.html(scores[activePlayer]);
@@ -82,13 +97,12 @@ function endRound(roundScore) {
     $setp2Score.html(scores[activePlayer]);
     $setp2roundScore.html(0);
   }
-  roundScore = 0;
-  console.log(roundScore);
 
   playerSwitch();
-  //TODO fix endRound so you can't keep getting more money
+  //TODO fix endRound so you can't keep getting more points
 }
 
+//playerSwitch seems to be working
 function playerSwitch() {
   if (activePlayer == 0) {
     activePlayer = 1;
