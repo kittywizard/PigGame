@@ -1,12 +1,53 @@
-
 body {
-
-    background-color: green;
+    background-color: whitesmoke;
 }
 
 .container {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 12fr);
+  grid-template-rows: 3;
+  /*justify-content:center;
+  align-content:center;*/
+  grid-gap: 5px;
+  grid-template-areas:
+    "h h h h h h h h h h h"
+    "p p p c c c c c u u u"
+    "f f f f f f f f f f f";
 
+
+}
+
+/* CSS settings for mouse over or active? */
+
+.p1, .p2 {
+  background-color: #ccc;
+  padding: 20px;
+  width:25%;
+}
+
+.p1 {
+  grid-area: p;
+}
+
+.p2 {
+  grid-area: u;
+}
+
+.buttons {
+  grid-area: f;
+  background-color: black;
+}
+
+.dice-box {
+  padding:10px;
+  background-color: pink;
+  width:50%;
+  color: black;
+  grid-area: c;
+}
+
+.header {
+  grid-area: h;
 }
 
 .p1roundScore {
@@ -19,20 +60,4 @@ body {
 
 .saveScore {
   display: block;
-}
-
-/* CSS settings for mouse over or active? */
-
-.p1, .p2 {
-  background-color: #ccc;
-  padding: 20px;
-  width:25%;
-}
-
-.dice-box {
-  padding:20px;
-  background-color: pink;
-  width:50%;
-  color: black;
-
 }
