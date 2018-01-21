@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:900');
+
+
 body {
     background-color: whitesmoke;
 }
@@ -6,8 +9,8 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, 12fr);
   grid-template-rows: 3;
-  /*justify-content:center;
-  align-content:center;*/
+  justify-content:center;
+  align-content:center;
   grid-gap: 5px;
   grid-template-areas:
     "h h h h h h h h h h h"
@@ -19,12 +22,22 @@ body {
 
 /* CSS settings for mouse over or active? */
 
+.currentRoll {
+  font-size: 55px;
+  color: black;
+  font-family: 'Montserrat', sans-serif;
+}
+
 .p1, .p2 {
-  background-color: #ccc;
+  background-color: #CFD5D2;
   padding: 20px;
   width:25%;
 }
 
+.p1 h1 {
+  font-family: 'Montserrat', sans-serif;
+
+}
 .p1 {
   grid-area: p;
 }
@@ -35,15 +48,16 @@ body {
 
 .buttons {
   grid-area: f;
-  background-color: black;
+  background-color: #E1D5D2;
 }
 
 .dice-box {
   padding:10px;
-  background-color: pink;
-  width:50%;
+  background-color: #ABD5D2;
   color: black;
   grid-area: c;
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
 }
 
 .header {

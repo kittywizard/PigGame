@@ -38,6 +38,10 @@ var $setp1roundScore = $(".p1roundScore");
 var $setp2Score = $(".p2Score");
 var $setp2roundScore = $(".p2roundScore");
 
+//now to display each dice roll on screen!
+var $setCurrentRoll = $(".currentRoll");
+
+
 //make a variable for the end round button
 var endRoundButton = document.getElementById("saveScore");
 
@@ -48,6 +52,7 @@ function rollDice() {
   //generate a random number between 1 and 6
   console.log("roundScore is currently: " + roundScore);
   var result = Math.floor(Math.random() * 6) + 1;
+  $setCurrentRoll.html(result);
   console.log("Result: " + result);
 
   //check the results
@@ -56,8 +61,9 @@ function rollDice() {
     result = 0;
     //log
     console.log("Result was: " + result + ",  round over.");
+
     //call endRound
-    endRound(result);
+    endRound(roundScore);
   } else {
     //add result to roundScore
     roundScore += result;
@@ -69,24 +75,13 @@ function rollDice() {
     } else if (activePlayer == 1) {
       $setp2roundScore.html(roundScore);
     }
-    return;
+    return roundScore;
   }
 }
 
 function endRound(roundScore) {
-  //check for when a score hits 100
-  //BUG this isn't triggering
-  if(scores[activePlayer] >= 100) {
-    console.log("Congrats to Player " + activePlayer + " for winning the game with a total of " + scores[activePlayer]);
-  }
-
-    //after someone wins... need to do something to end the GAME TODO
-
   //add roundScore to the activePlayer's score. in theory it should just add zero if there was a 1 rolled..
   scores[activePlayer] += roundScore;
-  roundScore = 0;
-  console.log("roundScore has been reset: " + roundScore);
-  //BUG this isn't being picked up
 
   if (activePlayer == 0) {
 
@@ -97,13 +92,17 @@ function endRound(roundScore) {
     $setp2Score.html(scores[activePlayer]);
     $setp2roundScore.html(0);
   }
-
-  playerSwitch();
+  if(scores[activePlayer] >= 100) {
+    console.log("Congrats to Player " + activePlayer + " for winning the game with a total of " + scores[activePlayer]);
+  }
+  playerSwitch(roundScore);
   //TODO fix endRound so you can't keep getting more points
 }
 
 //playerSwitch seems to be working
 function playerSwitch() {
+  //IT WORKS DONT DELETE THE ROUNDSCORE VAR BELOW???
+  roundScore = 0;
   if (activePlayer == 0) {
     activePlayer = 1;
   } else {
