@@ -50,10 +50,39 @@ var endRoundButton = document.getElementById("saveScore");
 //the dice rolling function
 function rollDice() {
   //generate a random number between 1 and 6
-  console.log("roundScore is currently: " + roundScore);
+  //TODO delete these extra logs
+  //console.log("roundScore is currently: " + roundScore);
+
   var result = Math.floor(Math.random() * 6) + 1;
-  $setCurrentRoll.html(result);
+  //$setCurrentRoll.html(result);
   console.log("Result: " + result);
+
+  switch  (result) {
+    case 1:
+      $setCurrentRoll.html("<img src='./dice/dice_1.svg' class='svg'>");
+      break;
+
+    case 2:
+      $setCurrentRoll.html("<img src='./dice/dice_2.svg'  class='svg'>");
+      break;
+
+    case 3:
+      $setCurrentRoll.html("<img src='./dice/dice_3.svg'  class='svg'>");
+      break;
+
+    case 4:
+      $setCurrentRoll.html("<img src='./dice/dice_4.svg'  class='svg'>");
+      break;
+
+    case 5:
+      $setCurrentRoll.html("<img src='./dice/dice_5.svg'  class='svg'>");
+      break;
+
+    case 6:
+      $setCurrentRoll.html("<img src='./dice/dice_6.svg'  class='svg'>");
+      break;
+
+  }
 
   //check the results
   if (result === 1) {
