@@ -121,11 +121,13 @@ function endRound(roundScore) {
     $setp2Score.html(scores[activePlayer]);
     $setp2roundScore.html(0);
   }
+  //check to see if the current activePlayer is at 100, if so run gameOver() and reset all scores
   if(scores[activePlayer] >= 100) {
+    gameOver();
     console.log("Congrats to Player " + activePlayer + " for winning the game with a total of " + scores[activePlayer]);
   }
+
   playerSwitch(roundScore);
-  //TODO fix endRound so you can't keep getting more points
 }
 
 //playerSwitch seems to be working
@@ -140,7 +142,22 @@ function playerSwitch() {
   console.log("Player is now: " + activePlayer);
   console.log("Player 1's score is: " + scores[0] + " and Player 2's score is: " + scores[1]);
 
-  //need to do the css editing maybe?
-
   return activePlayer;
+}
+
+//run this when one player hits 100 and reset all scores!
+function gameOver () {
+  scores[0] = 0;
+  scores[1] = 0;
+
+  $setp1Score.html(scores[0]);
+  $setp2Score.html(scores[1]);
+
+  $setp1roundScore.html(0);
+  $setp2roundScore.html(0);
+
+  $setCurrentRoll.html("<h3>Winner is " + activePlayer + "!!</h3>");
+
+  //need to edit html/css to display on screen winner!
+
 }
