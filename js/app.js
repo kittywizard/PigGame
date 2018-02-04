@@ -136,9 +136,11 @@ function playerSwitch() {
   roundScore = 0;
   if (activePlayer == 0) {
     activePlayer = 1;
+    document.getElementsByClassName('p1').style.background = "green";
   } else {
     activePlayer = 0;
   }
+
   console.log("Player is now: " + activePlayer);
   console.log("Player 1's score is: " + scores[0] + " and Player 2's score is: " + scores[1]);
 
