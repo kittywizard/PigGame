@@ -1,63 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,900');
+
 body {
     background-color: whitesmoke;
+    font-family: 'Montserrat', sans-serif;
 }
 
 .container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, 12fr);
-  grid-template-rows: 3;
-  /*justify-content:center;
-  align-content:center;*/
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 4fr 1fr;
   grid-gap: 5px;
-  grid-template-areas:
-    "h h h h h h h h h h h"
-    "p p p c c c c c u u u"
-    "f f f f f f f f f f f";
-
-
 }
-
-/* CSS settings for mouse over or active? */
-
-.p1, .p2 {
-  background-color: #ccc;
-  padding: 20px;
-  width:25%;
+.header {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 12px;
 }
 
 .p1 {
-  grid-area: p;
-}
-
-.p2 {
-  grid-area: u;
-}
-
-.buttons {
-  grid-area: f;
-  background-color: black;
+  grid-column: 1 / 2;
+  padding: 5px;
 }
 
 .dice-box {
   padding:10px;
-  background-color: pink;
-  width:50%;
+  background-color: #ABD5D2;
   color: black;
-  grid-area: c;
+  font-size: 30px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  grid-column: 2 / 3;
 }
 
-.header {
-  grid-area: h;
+.p2 {
+  grid-column: 3 / -1;
+  padding: 5px;
 }
 
-.p1roundScore {
+  .currentRoll {
+  font-size: 55px;
   color: black;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  justify-content: center;
+  text-align: c
 }
 
-.p1Score {
+.p1, .p2 {
+  background-color: #CFD5D2;
+  font-weight: 900;
+  font-size: 25px;
+}
+
+.buttons {
+  background-color: #E1D5D2;
+  grid-column-start: 1;
+  grid-column-end: 4;
+  padding: 10px;
+  align-items: center;
+}
+
+.svg {
+  border-radius: 5%;
+  background-color: white;
+  width: 15%;
+  height: 15%;
+
+}
+
+#rollAgain, #saveScore {
+  border-radius: 3px;
+  background-color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 16px;
   color: black;
+  font-weight: 400;
+  text-align: center;
+  padding: 5px;
+  justify-content: center;
 }
 
-.saveScore {
+/*
+
+what is this even for anymore???
+pretty sure it's for the old hide endRound button
+
+*/
+/*.saveScore {
   display: block;
-}
+}*/

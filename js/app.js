@@ -10,20 +10,25 @@ GAME RULES:
 
 */
 
+//TODO do i need these anymore?
 //listen for a click on the submit button to start function
 //var getClick = document.getElementById('rollAgain');
 //rollAgain.addEventListener('click', rollDice, false);
 
+//TODO do i need these either?
 //listen for the end round click
 //var stopRolling = document.getElementById('saveScore');
 //saveScore.addEventListener('click', endRound, false);
 
 
-//total scores
+//total scores array
 var scores = [0, 0];
+
+//activePlayer keeps track of Player 1 [0] and Player 2 [1]
+//Player 1 goes first. ALWAYS
 var activePlayer = 0;
 
-//set all scores to 0 to start
+//set roundScore to zero
 var roundScore = 0;
 
 //set css variables
@@ -32,6 +37,11 @@ var $setp1roundScore = $(".p1roundScore");
 
 var $setp2Score = $(".p2Score");
 var $setp2roundScore = $(".p2roundScore");
+
+//now to display each dice roll on screen!
+var $setCurrentRoll = $(".currentRoll");
+
+
 //make a variable for the end round button
 var endRoundButton = document.getElementById("saveScore");
 
@@ -40,39 +50,68 @@ var endRoundButton = document.getElementById("saveScore");
 //the dice rolling function
 function rollDice() {
   //generate a random number between 1 and 6
+  //TODO delete these extra logs
+  //console.log("roundScore is currently: " + roundScore);
+
   var result = Math.floor(Math.random() * 6) + 1;
+  //$setCurrentRoll.html(result);
   console.log("Result: " + result);
+
+  switch  (result) {
+    case 1:
+      $setCurrentRoll.html("<img src='./dice/dice_1.svg' class='svg'>");
+      break;
+
+    case 2:
+      $setCurrentRoll.html("<img src='./dice/dice_2.svg'  class='svg'>");
+      break;
+
+    case 3:
+      $setCurrentRoll.html("<img src='./dice/dice_3.svg'  class='svg'>");
+      break;
+
+    case 4:
+      $setCurrentRoll.html("<img src='./dice/dice_4.svg'  class='svg'>");
+      break;
+
+    case 5:
+      $setCurrentRoll.html("<img src='./dice/dice_5.svg'  class='svg'>");
+      break;
+
+    case 6:
+      $setCurrentRoll.html("<img src='./dice/dice_6.svg'  class='svg'>");
+      break;
+
+  }
 
   //check the results
   if (result === 1) {
     roundScore = 0;
-    console.log(roundScore + " endRound will now run");
+    result = 0;
+    //log
+    console.log("Result was: " + result + ",  round over.");
+
+    //call endRound
     endRound(roundScore);
   } else {
+    //add result to roundScore
     roundScore += result;
-    console.log("Round Score: " + roundScore);
+    console.log("Round Score: " + roundScore + " Current Player: " + activePlayer);
 
-    //check which player is active
+    //check which player is active and update their score
     if (activePlayer == 0) {
       $setp1roundScore.html(roundScore);
     } else if (activePlayer == 1) {
       $setp2roundScore.html(roundScore);
     }
-    
-    //not needed?
-    //return roundScore;
+    return roundScore;
   }
 }
 
 function endRound(roundScore) {
-  //check for when  a score hits 100
-  if(scores[activePlayer] <= 100) {
+  //add roundScore to the activePlayer's score. in theory it should just add zero if there was a 1 rolled..
+  scores[activePlayer] += roundScore;
 
-  }
-  //need to account for which player's turn it is at some point
-  //TODO switch Player
-  scores[activePlayer] = scores[activePlayer] + roundScore;
-  console.log(scores[activePlayer]);
   if (activePlayer == 0) {
 
     $setp1Score.html(scores[activePlayer]);
@@ -82,23 +121,45 @@ function endRound(roundScore) {
     $setp2Score.html(scores[activePlayer]);
     $setp2roundScore.html(0);
   }
-  roundScore = 0;
-  console.log(roundScore);
+  //check to see if the current activePlayer is at 100, if so run gameOver() and reset all scores
+  if(scores[activePlayer] >= 100) {
+    gameOver();
+    console.log("Congrats to Player " + activePlayer + " for winning the game with a total of " + scores[activePlayer]);
+  }
 
-  playerSwitch();
-  //TODO fix endRound so you can't keep getting more money
+  playerSwitch(roundScore);
 }
 
+//playerSwitch seems to be working
 function playerSwitch() {
+  //IT WORKS DONT DELETE THE ROUNDSCORE VAR BELOW???
+  roundScore = 0;
   if (activePlayer == 0) {
     activePlayer = 1;
+    document.getElementsByClassName('p1').style.background = "green";
   } else {
     activePlayer = 0;
   }
+
   console.log("Player is now: " + activePlayer);
   console.log("Player 1's score is: " + scores[0] + " and Player 2's score is: " + scores[1]);
 
-  //need to do the css editing maybe?
-
   return activePlayer;
+}
+
+//run this when one player hits 100 and reset all scores!
+function gameOver () {
+  scores[0] = 0;
+  scores[1] = 0;
+
+  $setp1Score.html(scores[0]);
+  $setp2Score.html(scores[1]);
+
+  $setp1roundScore.html(0);
+  $setp2roundScore.html(0);
+
+  $setCurrentRoll.html("<h3>Winner is " + activePlayer + "!!</h3>");
+
+  //need to edit html/css to display on screen winner!
+
 }
