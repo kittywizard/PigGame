@@ -33,10 +33,10 @@ var roundScore = 0;
 
 //set css variables
 var $setp1Score = $(".p1Score");
-var $setp1roundScore = $(".p1roundScore");
+var $setp1roundScore = $("#p1roundScore");
 
 var $setp2Score = $(".p2Score");
-var $setp2roundScore = $(".p2roundScore");
+var $setp2roundScore = $("#p2roundScore");
 
 //now to display each dice roll on screen!
 var $setCurrentRoll = $(".currentRoll");
@@ -57,7 +57,7 @@ function rollDice() {
   //$setCurrentRoll.html(result);
   console.log("Result: " + result);
 
-  switch  (result) {
+  switch (result) {
     case 1:
       $setCurrentRoll.html("<img src='./dice/dice_1.svg' class='svg'>");
       break;
@@ -122,7 +122,7 @@ function endRound(roundScore) {
     $setp2roundScore.html(0);
   }
   //check to see if the current activePlayer is at 100, if so run gameOver() and reset all scores
-  if(scores[activePlayer] >= 100) {
+  if (scores[activePlayer] >= 100) {
     gameOver();
     console.log("Congrats to Player " + activePlayer + " for winning the game with a total of " + scores[activePlayer]);
   }
@@ -134,11 +134,26 @@ function endRound(roundScore) {
 function playerSwitch() {
   //IT WORKS DONT DELETE THE ROUNDSCORE VAR BELOW???
   roundScore = 0;
+
   if (activePlayer == 0) {
+    //current player is now 2
     activePlayer = 1;
-    document.getElementsByClassName('p1').style.background = "green";
+    //change background color of each side
+    document.getElementById('p2').style.background = "#CFD5D2";
+    document.getElementById('p1').style.background = "whitesmoke";
+    document.getElementById('p1roundScore').style.display = "none";
+    document.getElementById('p2roundScore').style.display = "block";
+    //gotta be a better way to write this??
+
   } else {
+    //current player is now 1
     activePlayer = 0;
+    //change background color to each side
+    document.getElementById('p1').style.background = "#CFD5D2";
+    document.getElementById('p2').style.background = "whitesmoke";
+    document.getElementById('p2roundScore').style.display = "none";
+    document.getElementById('p1roundScore').style.display = "block";
+
   }
 
   console.log("Player is now: " + activePlayer);
@@ -148,7 +163,7 @@ function playerSwitch() {
 }
 
 //run this when one player hits 100 and reset all scores!
-function gameOver () {
+function gameOver() {
   scores[0] = 0;
   scores[1] = 0;
 
@@ -158,8 +173,10 @@ function gameOver () {
   $setp1roundScore.html(0);
   $setp2roundScore.html(0);
 
-  $setCurrentRoll.html("<h3>Winner is " + activePlayer + "!!</h3>");
-
-  //need to edit html/css to display on screen winner!
+  if (activePlayer == 0) {
+    $setCurrentRoll.html("<h3>Winner is Player 1!/h3>");
+  } else {
+    $setCurrentRoll.html("<h3>Winner is Player 2!/h3>");
+  }
 
 }
